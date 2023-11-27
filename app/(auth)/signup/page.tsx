@@ -17,11 +17,14 @@ const SignUpPage = () => {
     const { register, handleSubmit, formState: {errors}} = useForm<TAuthCredentialsValidator>({
         resolver: zodResolver(AuthCredentialsValidator),
     })
-    
-    const { data } = trpc.anyApiRoute.useQuery()
-    console.log(data)
-    const onSubmit = ({email, password}: TAuthCredentialsValidator) => {
 
+    const {mutate} = trpc.auth.createPayloadUser.useMutation({})
+
+    const onSubmit = ({email, password}: TAuthCredentialsValidator) => {
+        mutate({
+            email,
+            password
+        })
     }
 
   return (<>
@@ -49,6 +52,7 @@ const SignUpPage = () => {
                         <div className="grid gap-2 py-2">
                             <Label htmlFor="password">Password</Label>
                             <Input 
+                            type="password"
                             {...register('password')}
                             className={cn({ "focus-visible:ring-red-500": errors.password})} 
                             placeholder="password"/>
