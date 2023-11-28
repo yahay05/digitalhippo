@@ -3,8 +3,10 @@ import { DropdownMenu,DropdownMenuContent,DropdownMenuItem,DropdownMenuSeparator
 import { Button } from "./ui/button"
 import { User } from "@/payload-types"
 import Link from "next/link"
+import { useAuth } from "@/hooks/use-auth"
 
 const UserAccountNav = ({user}: {user: User}) => {
+    const { signOut } = useAuth()
     return(
         <DropdownMenu>
             <DropdownMenuTrigger asChild className="overflow-visible">
@@ -21,7 +23,7 @@ const UserAccountNav = ({user}: {user: User}) => {
                     <Link href='/sela'>Seller Dashboard</Link>
                 </DropdownMenuItem>
 
-                <DropdownMenuItem className='cursor-pointer'>
+                <DropdownMenuItem className='cursor-pointer' onClick={signOut}>
                     Log out
                 </DropdownMenuItem>
             </DropdownMenuContent>
