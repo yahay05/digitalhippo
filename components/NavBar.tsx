@@ -3,10 +3,13 @@ import MaxWidthWrapper from "./MaxWidthWrapper"
 import { Icons } from "./Icons"
 import NavItems from "./NavItems"
 import { buttonVariants } from "./ui/button"
-import { Divide } from "lucide-react"
 import Cart from "./Cart"
-const Navbar = () => {
-    const user = null
+import { getServerSideUser } from "@/lib/payload-utils"
+import { cookies } from 'next/headers'
+import UserAccountNav from "./UserAccountNav"
+const Navbar = async () => {
+    const nextCookies = cookies()
+    const { user }  = await getServerSideUser(nextCookies)
 
     return(
         <div className="bg-white sticky z-50 top-0 inset-x-0 h-16">
@@ -39,7 +42,7 @@ const Navbar = () => {
                                     aria-hidden="true" />
                                 )}
 
-                                { user ? <p></p> : (
+                                { user ? <UserAccountNav user={user} /> : (
                                     <Link href="/signup" 
                                     className={buttonVariants({variant: "ghost"})}>
                                         Create Account
