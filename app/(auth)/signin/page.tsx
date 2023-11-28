@@ -37,20 +37,21 @@ const SignInPage = () => {
     const {mutate: signIn, isLoading} = trpc.auth.signIn.useMutation({
         onSuccess:() => {
             toast.success("Signed in successfully.")
-            
-            router.refresh()
 
             if(origin) { 
                 router.push(`/${origin}`) 
+                router.refresh()
                 return
             }
 
             if(isSeller) {
                 router.push('/sela')
+                router.refresh()
                 return
             }
 
             router.push('/')
+            router.refresh()
         },
         onError: (err) => {
             if(err.data?.code === "UNAUTHORIZED"){
