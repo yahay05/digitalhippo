@@ -12,8 +12,6 @@ export const useAuth = () => {
                 }
             })
 
-            console.log(res)
-
             if(!res.ok){
                 throw new Error()
             }

@@ -31,8 +31,7 @@ const ProductListing = ({product, index}: ProductListingProps) => {
     if(!product || !isVisible) return <ProductPlaceholder />
 
     if(isVisible && product){
-        return (
-            <Link
+        return <Link
             className={cn("invisible h-full w-full cursor-pointer group/main",{
                 'visible animate-in fade-in-5': isVisible,
             })}
@@ -44,7 +43,7 @@ const ProductListing = ({product, index}: ProductListingProps) => {
                     <p className="mt-1 text-sm font-meidum text-gray-900">{formatPrice(product.price)}</p>
                 </div>
             </Link>
-        )
+        
     }
     
 }
