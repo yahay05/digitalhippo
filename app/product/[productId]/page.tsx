@@ -2,6 +2,7 @@ import AddToCartButton from "@/components/AddToCartButton"
 import ImageSlider from "@/components/ImageSlider"
 import MaxWidthWrapper from "@/components/MaxWidthWrapper"
 import ProductReel from "@/components/ProductReel"
+import { buttonVariants } from "@/components/ui/button"
 import { PRODUCT_CATEGORIES } from "@/config"
 import { getPayloadClient } from "@/get-payload"
 import { formatPrice } from "@/lib/utils"
@@ -105,6 +106,7 @@ const ProductPage = async ({params}: PageProps) => {
                     <div>
                         <div className="mg-10">
                             <AddToCartButton product={product}/>
+                            <Link href="/cart" className={buttonVariants({variant:"secondary"})}>Continue to checkout</Link>
                         </div>
                         <div className="mt-6 text-center">
                             <div className="group inline-flex text-sm text-medium">
