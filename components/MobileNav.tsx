@@ -1,14 +1,23 @@
 'use client'
 
 import { PRODUCT_CATEGORIES } from '@/config'
+import { User } from '@/payload-types'
 import { Menu, X } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import { Button, buttonVariants } from './ui/button'
+import { useAuth } from '@/hooks/use-auth'
+import { DropdownMenuSeparator } from './ui/dropdown-menu'
 
-const MobileNav = () => {
+interface MobileNavPros{
+  user: User | null
+}
+
+const MobileNav = ({user}: MobileNavPros) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
+  const { signOut } = useAuth()
 
   const pathname = usePathname()
 
@@ -101,22 +110,33 @@ const MobileNav = () => {
             </div>
 
             <div className='space-y-6 border-t border-gray-200 px-4 py-6'>
-              <div className='flow-root'>
+              { user ? null : (
+                <div className='flow-root'>
                 <Link
-                  onClick={() => closeOnCurrent('/sign-in')}
-                  href='/sign-in'
+                  onClick={() => closeOnCurrent('/signin')}
+                  href='/signin'
                   className='-m-2 block p-2 font-medium text-gray-900'>
-                  Sign in
+                  Sign In
                 </Link>
               </div>
-              <div className='flow-root'>
+                )}
+              { user ? (
+                <div className='flex flex-col space-y-3'>
+                  <h3>My Account</h3>
+                  <DropdownMenuSeparator />
+                  <p className="font-medium text-sm text-black">{user.email}</p>
+                  <Link href='/sela' className={buttonVariants({variant: "secondary"})}>Seller Dashboard</Link>
+                  <Button onClick={signOut}>Log Out</Button>
+                </div>
+              ) : (<div className='flow-root'>
                 <Link
-                  onClick={() => closeOnCurrent('/sign-up')}
-                  href='/sign-up'
+                  onClick={() => closeOnCurrent('/signup')}
+                  href='/signup'
                   className='-m-2 block p-2 font-medium text-gray-900'>
-                  Sign up
+                  Sign Up
                 </Link>
               </div>
+                        )}
             </div>
           </div>
         </div>
