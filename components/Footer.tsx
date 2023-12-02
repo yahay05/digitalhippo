@@ -32,7 +32,7 @@ const Footer = () => {
                                 <p className="mt-3 text-sm text-muted-foreground">
                                     If you&apos;d like to sell high-quality digital products, you can do so in minutes.{" "}
                                 </p>
-                                <Link href="/sign-in?as=seller" 
+                                <Link href="/signin?as=seller" 
                                 className="whitespace-nowrap text-black font-medium hover:text-zinc-900"
                                 >
                                     Get started &rarr;
@@ -42,12 +42,12 @@ const Footer = () => {
                     </div>
                     }
                 </div>
-                <div className="py-10 md:flex md:items-center md-justify-between">
+                <div className="py-10 md:flex md:items-center md:justify-between">
                     <div className="text-center md:text-left">
                         <p className="text-sm text-muted-foreground">&copy; {new Date().getFullYear()} All Rights Reserved</p>
                     </div>
                     <div className="mt-4 flex items-center justify-center md:mt-0">
-                        <div className="flex-space-x-8">
+                        <div className="flex space-x-8">
                             <Link className="text-sm text-muted-foreground hover:text-gray-600"href="#">Terms</Link>
                             <Link className="text-sm text-muted-foreground hover:text-gray-600"href="#">Privacy Policy</Link>
                             <Link className="text-sm text-muted-foreground hover:text-gray-600"href="#">Cookie Policy</Link>
