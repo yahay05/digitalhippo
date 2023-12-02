@@ -5,7 +5,7 @@ import type Stripe from 'stripe'
 import { getPayloadClient } from './get-payload'
 import { Product } from './payload-types'
 import { Resend } from 'resend'
-import { ReceiptEmailHtml } from './components/ReceiptEmail'
+import { ReceiptEmailHtml } from './components/emails/ReceiptEmail'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
@@ -99,7 +99,7 @@ export const stripeWebhookHandler = async (
     // send receipt
     try {
       const data = await resend.emails.send({
-        from: 'DigitalHippo <hello@joshtriedcoding.com>',
+        from: 'DigitalHippo <onboarding@resend.dev>',
         to: [user.email],
         subject:
           'Thanks for your order! This is your receipt.',
