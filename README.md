@@ -23,16 +23,16 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 To run it in production server:
 
 ```bash
-npm run dev
+npm run build
 npm run start
 # or
-yarn dev
+yarn build
 yarn start
 # or
-pnpm dev
+pnpm build
 pnpm start
 # or
-bun dev
+bun build
 bun start
 ```
 
